@@ -35,7 +35,22 @@ public class Plateau {
 		{
 			String chaine="";
 			
-			
+			try
+				{
+					InputStream flux=new FileInputStream(fichier); 
+					InputStreamReader lecture=new InputStreamReader(flux);
+					BufferedReader buff=new BufferedReader(lecture);
+					String ligne;
+					while ((ligne=buff.readLine())!=null)
+					{
+						System.out.println(ligne);
+					}
+					buff.close(); 
+				}		
+			catch (Exception e)
+				{
+					System.out.println(e.toString());
+				}
 			 Scanner sc = null;
 			 try
 				 {
@@ -44,7 +59,7 @@ public class Plateau {
 			             {
 			                 for (char c : sc.next().toCharArray()) 
 				                 {
-				                     
+				                     System.out.println(c);
 				                 }
 			             }
 				 }

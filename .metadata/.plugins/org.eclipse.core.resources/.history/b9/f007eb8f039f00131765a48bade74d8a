@@ -1,7 +1,6 @@
 package Jeu;
 
 import java.lang.reflect.Array;
-import java.util.Scanner;
 import java.io.*; 
 
 public class Plateau {
@@ -35,23 +34,22 @@ public class Plateau {
 		{
 			String chaine="";
 			
-			
-			 Scanner sc = null;
-			 try
-				 {
-					 sc = new Scanner(new File(fichier));
-			         while (sc.hasNextLine()) 
-			             {
-			                 for (char c : sc.next().toCharArray()) 
-				                 {
-				                     
-				                 }
-			             }
-				 }
-			 catch (Exception e)
+			try
 				{
-					System.out.println(e.toString());
-				}
+					InputStream flux=new FileInputStream(fichier); 
+					InputStreamReader lecture=new InputStreamReader(flux);
+					BufferedReader buff=new BufferedReader(lecture);
+					String ligne;
+					while ((ligne=buff.readLine())!=null)
+					{
+						System.out.println(ligne);
+					}
+					buff.close(); 
+				}		
+				catch (Exception e)
+					{
+						System.out.println(e.toString());
+					}
 			
 		}
 	
