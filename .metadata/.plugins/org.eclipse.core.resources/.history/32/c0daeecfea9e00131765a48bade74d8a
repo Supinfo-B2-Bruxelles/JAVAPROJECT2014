@@ -36,11 +36,11 @@ public class Game {
 				sokoban();
 				break;
 			case 2:
-				score();
+				
 				break;
 
 			case 3:
-				creerSonProporeNiveau();
+				
 				break;
 
 
@@ -62,13 +62,4 @@ public class Game {
 		{
 			
 		}
-	public static void score()
-		{
-			
-		}
-	public static void creerSonProporeNiveau()
-		{
-			
-		}
-	
 }
