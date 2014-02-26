@@ -8,7 +8,6 @@ public class Main {
 		
 		Personage joueur = new Personage();
 		Integer quitter=0;
-		Integer LevelDeDepart=0;
 		while (quitter!=1)
 			{
 				Integer choixMenu=0;
@@ -17,10 +16,6 @@ public class Main {
 						if (args[0]=="level")
 							{
 								choixMenu=1;
-									if (args[1]!=null)
-										{
-											LevelDeDepart=Integer.parseInt(args[1]);
-										}		
 							}
 						else if (args[0]=="score")
 							{
