@@ -1,0 +1,40 @@
+package Personage;
+
+import java.util.Scanner;
+
+public class Personage {
+	private String nom;
+	private Integer level;
+	
+	public Personage()
+		{
+			Scanner sc = new Scanner(System.in);
+			String nom;
+		
+			System.out.println("Bonjour, bienvenu dans le jeu");
+			System.out.println("Quel nom souhaitez vous donner à votre perso?");
+			nom = sc.next();
+			this.setNom(nom);
+			this.setLevel(0);
+		}
+	
+	public void setNom(String nom)
+		{
+			this.nom = nom;
+			
+		}
+	public String getNom()
+		{
+			return this.nom;
+		}
+
+	public Integer getLevel() {
+		return level;
+	}
+
+	public void setLevel(Integer level) {
+		this.level = level;
+	}
+	
+
+}
