@@ -27,7 +27,7 @@ public class Game {
 			return retour;
 			
 		}
-	public static Integer lancementApplication (Integer choix, Personage joueur)
+	public static Integer lancementApplication (Integer choix)
 		{
 			Scanner sc = new Scanner(System.in);
 			
