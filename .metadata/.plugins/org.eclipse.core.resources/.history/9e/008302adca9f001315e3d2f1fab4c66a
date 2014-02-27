@@ -13,7 +13,7 @@ public class Case {
 		}
 		else
 		{
-			this.setEtat(" ");
+			//this.setEtat(" ");
 		}
 		
 		return this.etat;
@@ -30,10 +30,10 @@ public class Case {
 		}
 		else
 		{
-			//System.out.println(etat);
+			System.out.println(etat);
 			etatFinal = " ";
 		}
-		//System.out.println(etatFinal);
+		System.out.println(etatFinal);
 		this.etat = etatFinal;
 	}
 	

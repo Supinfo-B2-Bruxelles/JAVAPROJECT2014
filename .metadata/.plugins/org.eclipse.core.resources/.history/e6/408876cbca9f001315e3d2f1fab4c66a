@@ -115,7 +115,7 @@ public class Plateau {
 	public Integer[] dimentionDeTabCases()
 		{
 			Integer retour[]= new Integer [2];
-			//System.out.println(this.tabCases.length);
+			System.out.println(this.tabCases.length);
 			retour[0]=(this.tabCases.length)-1;
 			retour[1]=0;
 			for (Integer i=0; i<retour[0]; i++)
