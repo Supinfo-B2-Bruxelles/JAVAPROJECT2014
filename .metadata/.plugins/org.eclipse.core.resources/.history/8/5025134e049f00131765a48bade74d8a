@@ -25,17 +25,7 @@ public class Plateau {
 			}
 			this.tabCases = tabCases;
 		}
-	public void setTabCasesAvecValeur(Integer x, Integer y, char lettre)
-		{
-			
-			for (int i = 0; i < y; i++) { //verticale
-				for (int j = 0; j < x; j++) { //horizontale
-					
-					tabCases[i][j] = new Case(lettre);
-				}
-			}
-			this.tabCases = tabCases;
-		}
+	
 	public Plateau()
 		{
 			
@@ -44,8 +34,7 @@ public class Plateau {
 	public void chargerPlateauDepuisFichier(String fichier)
 		{
 			String chaine="";
-			Integer i=0;
-			Integer j=0;
+			
 			
 			 Scanner sc = null;
 			 try
@@ -55,7 +44,7 @@ public class Plateau {
 			             {
 			                 for (char c : sc.next().toCharArray()) 
 				                 {
-			                	 	setTabCasesAvecValeur(i, j, c);
+				                     
 				                 }
 			             }
 				 }
