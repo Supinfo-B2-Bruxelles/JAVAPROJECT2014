@@ -7,7 +7,7 @@ public class Case {
 		
 		String etat= this.etat;
 		
-		if (etat != "X" && etat != "O" && etat != "B" && etat != "=" && etat != " " && etat != "S")
+		if (etat != "X" && etat != "O" && etat != "B" && etat != "=" && etat != " ")
 		{
 			this.setEtat(" ");
 		}
@@ -17,7 +17,7 @@ public class Case {
 	public void setEtat(String etat) {
 		
 		String etatFinal;
-		if (etat != "X" && etat != "O" && etat != "B" && etat != "=" && etat != " " && etat != "S")
+		if (etat != "X" && etat != "O" && etat != "B" && etat != "=" && etat != " ")
 		{
 			etatFinal = " ";
 		}
