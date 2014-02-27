@@ -116,14 +116,14 @@ public class Plateau {
 		{
 			Integer retour[]= new Integer [2];
 			//System.out.println(this.tabCases.length);
-			retour[0]=(this.tabCases.length);
+			retour[0]=(this.tabCases.length)-1;
 			retour[1]=0;
 			for (Integer i=0; i<retour[0]; i++)
 				{
 					//System.out.println(i);
 					if (retour[1]<this.tabCases[i].length)
 						{
-							retour[1]=(this.tabCases[i].length);
+							retour[1]=(this.tabCases[i].length)-1;
 						}
 				}
 			
@@ -133,22 +133,12 @@ public class Plateau {
 		{
 			Integer[] dimention = this.dimentionDeTabCases();
 			String ligne="";
-			String caractere="";
 			for (Integer i=0; i<dimention[0]; i++)
 				{
 					ligne="";
 					for (Integer j=0; j<dimention[1]; j++)
 						{
-							
-							if (this.getTabCases(i, j).getEtat().equals("."))
-								{
-									caractere=" ";
-								}
-							else
-								{
-									caractere=this.getTabCases(i, j).getEtat();
-								}
-							ligne+=caractere;
+							ligne+=this.getTabCases(i, j).getEtat();
 						}
 					System.out.println(ligne);
 				}

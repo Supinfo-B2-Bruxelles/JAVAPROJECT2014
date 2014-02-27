@@ -133,22 +133,12 @@ public class Plateau {
 		{
 			Integer[] dimention = this.dimentionDeTabCases();
 			String ligne="";
-			String caractere="";
 			for (Integer i=0; i<dimention[0]; i++)
 				{
 					ligne="";
 					for (Integer j=0; j<dimention[1]; j++)
 						{
-							
-							if (this.getTabCases(i, j).getEtat().equals("."))
-								{
-									caractere=" ";
-								}
-							else
-								{
-									caractere=this.getTabCases(i, j).getEtat();
-								}
-							ligne+=caractere;
+							ligne+=this.getTabCases(i, j).getEtat();
 						}
 					System.out.println(ligne);
 				}

@@ -148,7 +148,7 @@ public class Plateau {
 								{
 									caractere=this.getTabCases(i, j).getEtat();
 								}
-							ligne+=caractere;
+							ligne+=this.getTabCases(i, j).getEtat();
 						}
 					System.out.println(ligne);
 				}
