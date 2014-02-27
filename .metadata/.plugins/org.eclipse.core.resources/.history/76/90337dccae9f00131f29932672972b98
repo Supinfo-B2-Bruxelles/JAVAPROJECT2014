@@ -58,17 +58,13 @@ public class Plateau {
 		                	 	x++;
 			                 }
 		             }
-					
 					 this.setTabCases(x, y);
-					 sc.close();
-					 sc = new Scanner(new File(fichier));
-					 
 			         while (sc.hasNextLine()) 
 			             {
 			                 for (char c : sc.next().toCharArray()) 
 				                 {
 			                	 	String s = Character.toString(c);
-			                	 	
+			                	 	System.out.println(s);
 			                	 	setTabCasesAvecValeur(i, j, s);
 				                 }
 			             }
