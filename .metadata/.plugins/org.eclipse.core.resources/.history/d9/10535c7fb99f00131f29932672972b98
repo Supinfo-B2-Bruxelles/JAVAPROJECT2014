@@ -166,7 +166,7 @@ public class Plateau {
 		}
 	public void afficherPlateau()
 		{
-			Integer[] dimention = this.dimentionDeTabCases();
+			Integer dimention = 
 		}
 	
 

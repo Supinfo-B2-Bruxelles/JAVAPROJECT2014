@@ -37,60 +37,6 @@ public class Plateau {
 		{
 			
 		}
-	public Plateau(String fichier)
-		{
-			Integer i=0;
-			Integer j=0;
-			Integer x=0;
-			Integer y=0;
-			Integer xMax=0;
-			
-			 Scanner sc = null;
-			 try
-				 {
-					 sc = new Scanner(new File(fichier));
-					 while (sc.hasNextLine()) 
-		             {
-						 y++;
-						 x=0;
-		                 for (char c : sc.next().toCharArray()) 
-			                 {
-		                	 	x++;
-			                 }
-		                 if (x>xMax)
-			                 {
-			                	xMax=x; 
-			                 }
-		             }
-					
-					 this.setTabCases(xMax, y);
-					 sc.close();
-					 sc = new Scanner(new File(fichier));
-					 
-			         while (sc.hasNextLine()) 
-			             {
-			        	 	
-			        	 	j=0;
-			                 for (char c : sc.next().toCharArray()) 
-				                 {
-			                	 	String s = Character.toString(c);
-			                	 	//System.out.println(s);
-			                	 	setTabCasesAvecValeur(i, j, s);
-			                	 	j++;
-				                 }
-			                 for (Integer n=j; i==xMax ; i++)
-				                 {
-			                	 	setTabCasesAvecValeur(n, j, ".");
-				                 }
-			                 i++;
-			             }
-			         sc.close();
-				 }
-			 catch (Exception e)
-				{
-					System.out.println(e.toString());
-				}
-		}
 	
 	public void chargerPlateauDepuisFichier(String fichier)
 		{
@@ -152,21 +98,13 @@ public class Plateau {
 	public Integer[] dimentionDeTabCases()
 		{
 			Integer retour[] = null;
-			retour[0]=this.tabCases.length;
-			retour[1]=0;
-			for (Integer i=0; i==retour[0]; i++)
-				{
-					if (retour[1]<this.tabCases[i].length)
-						{
-							retour[1]=this.tabCases[i].length;
-						}
-				}
-			
+			retour[0]=0;
 			return retour;
 		}
 	public void afficherPlateau()
 		{
-			Integer[] dimention = this.dimentionDeTabCases();
+			//Integer tailleX=this.tabCases.lenth;
+			//Integer tailleY=this.tabCases[].lenth; 
 		}
 	
 
