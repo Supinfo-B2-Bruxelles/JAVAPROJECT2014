@@ -15,7 +15,7 @@ public class Case {
 	}
 
 	public void setEtat(String etat) {
-		System.out.println(etat);
+		
 		String etatFinal;
 		if (etat != "X" && etat != "O" && etat != "B" && etat != "=" && etat != " ")
 		{
