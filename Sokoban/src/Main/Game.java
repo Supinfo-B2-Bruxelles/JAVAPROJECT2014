@@ -63,6 +63,7 @@ public class Game {
 		{
 			Plateau plat = new Plateau();
 			plat.chargerPlateauDepuisFichier("C:\\Users\\sebastien\\Documents\\GitHub\\JAVAPROJECT2014\\Sokoban\\texte.txt");
+			plat.afficherPlateau();
 		}
 	public static void score()
 		{

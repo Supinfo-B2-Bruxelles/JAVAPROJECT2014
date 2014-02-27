@@ -76,10 +76,10 @@ public class Plateau {
 					 sc.close();
 					 //remplissage du tableau
 					 sc = new Scanner(new File(fichier));
-					 System.out.println("yMax:");
-					 System.out.println(y);
-					 System.out.println("xMax:");
-					 System.out.println(xMax);
+					 //System.out.println("yMax:");
+					 //System.out.println(y);
+					 //System.out.println("xMax:");
+					 //System.out.println(xMax);
 			         while (sc.hasNextLine()) 
 			             {
 			        	 	
@@ -87,17 +87,17 @@ public class Plateau {
 			                 for (char c : sc.next().toCharArray()) 
 				                 {
 			                	 	String s = Character.toString(c);
-			                	 	System.out.println(s);
+			                	 	//System.out.println(s);
 			                	 	setTabCasesAvecValeur(j, i, s);
 			                	 	j++;
-			                	 	System.out.println("j:");
-					                 System.out.println(j);
+			                	 	//System.out.println("j:");
+					                //System.out.println(j);
 				                 }
-			                 System.out.println("j sortie de boucle:");
-			                 System.out.println(j);
+			                 //System.out.println("j sortie de boucle:");
+			                 //System.out.println(j);
 			                 for (Integer n=j; n<xMax ; n++)
 				                 {
-			                	 	System.out.println(n);
+			                	 	//System.out.println(n);
 			                	 	setTabCasesAvecValeur(n, i, ".");
 				                 }
 			                 
@@ -114,14 +114,16 @@ public class Plateau {
 	// renvoie un array avec en [0] y et en [1] x
 	public Integer[] dimentionDeTabCases()
 		{
-			Integer retour[] = null;
-			retour[0]=this.tabCases.length;
+			Integer retour[]= new Integer [2];
+			System.out.println(this.tabCases.length);
+			retour[0]=(this.tabCases.length)-1;
 			retour[1]=0;
-			for (Integer i=0; i<=retour[0]; i++)
+			for (Integer i=0; i<retour[0]; i++)
 				{
+					//System.out.println(i);
 					if (retour[1]<this.tabCases[i].length)
 						{
-							retour[1]=this.tabCases[i].length;
+							retour[1]=(this.tabCases[i].length)-1;
 						}
 				}
 			
@@ -130,9 +132,15 @@ public class Plateau {
 	public void afficherPlateau()
 		{
 			Integer[] dimention = this.dimentionDeTabCases();
+			String ligne="";
 			for (Integer i=0; i<dimention[0]; i++)
 				{
-					
+					ligne="";
+					for (Integer j=0; j<dimention[1]; j++)
+						{
+							ligne+=this.getTabCases(i, j).getEtat();
+						}
+					System.out.println(ligne);
 				}
 		}
 	

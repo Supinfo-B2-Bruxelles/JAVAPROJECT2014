@@ -7,24 +7,33 @@ public class Case {
 		
 		String etat= this.etat;
 		
-		if (etat != "X" && etat != "O" && etat != "B" && etat != "=" && etat != " " && etat != "S")
+		if (etat.equals("X") || etat.equals("O") || etat.equals("B") || etat.equals("=") || etat.equals(" ") || etat.equals("S")|| etat.equals("."))
 		{
-			this.setEtat(" ");
+			
 		}
+		else
+		{
+			//this.setEtat(" ");
+		}
+		
 		return this.etat;
 	}
 
 	public void setEtat(String etat) {
 		
 		String etatFinal;
-		if (etat != "X" && etat != "O" && etat != "B" && etat != "=" && etat != " " && etat != "S")
+		
+		if (etat.equals("X") || etat.equals("O") || etat.equals("B") || etat.equals("=") || etat.equals(" ") || etat.equals("S")|| etat.equals("."))
 		{
-			etatFinal = " ";
+			
+			etatFinal = etat;
 		}
 		else
 		{
-			etatFinal = etat;
+			System.out.println(etat);
+			etatFinal = " ";
 		}
+		System.out.println(etatFinal);
 		this.etat = etatFinal;
 	}
 	
