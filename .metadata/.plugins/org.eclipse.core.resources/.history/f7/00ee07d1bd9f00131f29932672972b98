@@ -95,10 +95,10 @@ public class Plateau {
 				                 }
 			                 System.out.println("j sortie de boucle:");
 			                 System.out.println(j);
-			                 for (Integer n=j; n<xMax ; n++)
+			                 for (Integer n=j; n<xMax ; i++)
 				                 {
 			                	 	System.out.println(n);
-			                	 	setTabCasesAvecValeur(n, i, ".");
+			                	 	setTabCasesAvecValeur(, n, ".");
 				                 }
 			                 
 			                 i++;

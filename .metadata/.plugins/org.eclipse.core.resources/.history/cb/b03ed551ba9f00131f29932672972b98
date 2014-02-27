@@ -29,7 +29,7 @@ public class Plateau {
 		{
 			
 					
-					this.tabCases[y][x].setEtat(lettre);
+					this.tabCases[x][y].setEtat(lettre);
 				
 			
 		}
@@ -39,7 +39,57 @@ public class Plateau {
 		}
 	public Plateau(String fichier)
 		{
-			this.chargerPlateauDepuisFichier(fichier);
+			Integer i=0;
+			Integer j=0;
+			Integer x=0;
+			Integer y=0;
+			Integer xMax=0;
+			
+			 Scanner sc = null;
+			 try
+				 {
+					 sc = new Scanner(new File(fichier));
+					 while (sc.hasNextLine()) 
+		             {
+						 y++;
+						 x=0;
+		                 for (char c : sc.next().toCharArray()) 
+			                 {
+		                	 	x++;
+			                 }
+		                 if (x>xMax)
+			                 {
+			                	xMax=x; 
+			                 }
+		             }
+					
+					 this.setTabCases(xMax, y);
+					 sc.close();
+					 sc = new Scanner(new File(fichier));
+					 
+			         while (sc.hasNextLine()) 
+			             {
+			        	 	
+			        	 	j=0;
+			                 for (char c : sc.next().toCharArray()) 
+				                 {
+			                	 	String s = Character.toString(c);
+			                	 	//System.out.println(s);
+			                	 	setTabCasesAvecValeur(i, j, s);
+			                	 	j++;
+				                 }
+			                 for (Integer n=j; i==xMax ; i++)
+				                 {
+			                	 	setTabCasesAvecValeur(n, j, ".");
+				                 }
+			                 i++;
+			             }
+			         sc.close();
+				 }
+			 catch (Exception e)
+				{
+					System.out.println(e.toString());
+				}
 		}
 	
 	public void chargerPlateauDepuisFichier(String fichier)
@@ -52,7 +102,6 @@ public class Plateau {
 			Integer xMax=0;
 			
 			 Scanner sc = null;
-			 //prise des dimentions maximales du tableau pour l'initialier
 			 try
 				 {
 					 sc = new Scanner(new File(fichier));
@@ -62,24 +111,18 @@ public class Plateau {
 						 x=0;
 		                 for (char c : sc.next().toCharArray()) 
 			                 {
-		                	 	
 		                	 	x++;
-		                	 	
 			                 }
 		                 if (x>xMax)
 			                 {
 			                	xMax=x; 
 			                 }
 		             }
-					 
+					
 					 this.setTabCases(xMax, y);
 					 sc.close();
-					 //remplissage du tableau
 					 sc = new Scanner(new File(fichier));
-					 System.out.println("yMax:");
-					 System.out.println(y);
-					 System.out.println("xMax:");
-					 System.out.println(xMax);
+					 
 			         while (sc.hasNextLine()) 
 			             {
 			        	 	
@@ -87,20 +130,14 @@ public class Plateau {
 			                 for (char c : sc.next().toCharArray()) 
 				                 {
 			                	 	String s = Character.toString(c);
-			                	 	System.out.println(s);
-			                	 	setTabCasesAvecValeur(j, i, s);
+			                	 	//System.out.println(s);
+			                	 	setTabCasesAvecValeur(i, j, s);
 			                	 	j++;
-			                	 	System.out.println("j:");
-					                 System.out.println(j);
 				                 }
-			                 System.out.println("j sortie de boucle:");
-			                 System.out.println(j);
-			                 for (Integer n=j; n<xMax ; n++)
+			                 for (Integer n=j; i<=xMax ; i++)
 				                 {
-			                	 	System.out.println(n);
-			                	 	setTabCasesAvecValeur(n, i, ".");
+			                	 	setTabCasesAvecValeur(n, j, ".");
 				                 }
-			                 
 			                 i++;
 			             }
 			         sc.close();

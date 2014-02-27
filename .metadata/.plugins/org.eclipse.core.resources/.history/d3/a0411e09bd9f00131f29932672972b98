@@ -29,7 +29,7 @@ public class Plateau {
 		{
 			
 					
-					this.tabCases[y][x].setEtat(lettre);
+					this.tabCases[x][y].setEtat(lettre);
 				
 			
 		}
@@ -95,10 +95,10 @@ public class Plateau {
 				                 }
 			                 System.out.println("j sortie de boucle:");
 			                 System.out.println(j);
-			                 for (Integer n=j; n<xMax ; n++)
+			                 for (Integer n=j; i<xMax ; i++)
 				                 {
 			                	 	System.out.println(n);
-			                	 	setTabCasesAvecValeur(n, i, ".");
+			                	 	setTabCasesAvecValeur(j, n, ".");
 				                 }
 			                 
 			                 i++;
