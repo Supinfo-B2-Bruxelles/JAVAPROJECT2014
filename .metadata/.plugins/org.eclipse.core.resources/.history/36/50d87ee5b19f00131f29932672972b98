@@ -28,7 +28,7 @@ public class Plateau {
 	public void setTabCasesAvecValeur(Integer x, Integer y, String lettre)
 		{
 			
-					
+					System.out.println(lettre);
 					this.tabCases[x][y].setEtat(lettre);
 				
 			
@@ -68,7 +68,7 @@ public class Plateau {
 			                 for (char c : sc.next().toCharArray()) 
 				                 {
 			                	 	String s = Character.toString(c);
-			                	 	System.out.println(s);
+			                	 	
 			                	 	setTabCasesAvecValeur(i, j, s);
 				                 }
 			             }
