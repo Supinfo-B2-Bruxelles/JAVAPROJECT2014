@@ -228,7 +228,10 @@ public class Plateau {
 		switch (dir){
 		default: System.out.println("Ah,ah,ah.Petit malin."); break;
 		
-		
+		//reset du level
+		case 9:
+			System.out.println("Reset du niveau.");
+			break;
 		/*Vers le haut*/
 		case 8: 
 			if(this.getTabCases(coorJoueur[0]-1, coorJoueur[1]).getEtat().equals("="))

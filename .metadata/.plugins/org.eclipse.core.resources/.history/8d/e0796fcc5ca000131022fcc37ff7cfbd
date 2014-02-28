@@ -61,11 +61,10 @@ public class Game {
 		}
 	public static void sokoban(Personage joueur)
 		{
-			
+			Plateau plat = new Plateau();
 			boolean resteDansJeu= true;
 			while(joueur.getLevel()<11 && resteDansJeu)
 			{
-				Plateau plat = new Plateau();
 				plat.chargerPlateauDepuisFichier("lv"+(joueur.getLevel()).toString()+".txt");
 				resteDansJeu=plat.jeu(joueur);
 				
