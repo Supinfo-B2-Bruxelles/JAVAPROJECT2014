@@ -1,0 +1,117 @@
+package Jeu;
+
+import java.io.*; 
+
+import Personage.Personage;
+
+public class ListeScore {
+	private Score [] listeDesScores;
+	private Integer level;
+
+	public Score[] getListeDesScores() 
+		{
+			return listeDesScores;
+		}
+
+	public void setListeDesScores(Score[] listeDesScores) 
+		{
+			this.listeDesScores = listeDesScores;
+		}
+	
+	public Integer getLevel() 
+		{
+			return level;
+		}
+
+	public void setLevel(Integer level) 
+		{
+			this.level = level;
+		}
+
+	public ListeScore ()
+		{
+			
+		}
+	public void genererListeAPartirDuFichier(Integer level)
+		{
+			this.setLevel(level);
+			FileInputStream fis = null;
+			ObjectInputStream ois = null;
+			File fichier = new File("Scores\\level"+this.getLevel()+".txt");
+			if (! fichier.exists())
+				{
+					try 
+						{
+							ListeScore liste= new ListeScore();
+							fis = new FileInputStream("Scores\\level"+level+".txt");
+							ois = new ObjectInputStream(fis);
+							liste = (ListeScore) ois.readObject();
+							this.listeDesScores = liste.listeDesScores;
+							
+						} 
+					catch (IOexception e) 
+						{
+							System.out.println(e.toString());
+						} 
+					finally 
+						{ 
+							fis.close();
+							ois.close();
+						}
+				}
+			
+
+		}
+	public void miseAJourDesScores(Personage joueur, Plateau plat)
+		{
+			//préparation de l'objet liste
+			this.genererListeAPartirDuFichier(joueur.getLevel());
+			Score liste[]= new Score [(this.getListeDesScores().length)+1];
+			for (Integer i=1; i<=this.getListeDesScores().length; i++)
+				{
+					liste[i]=this.getListeDesScores()[i];		
+				}
+			liste[this.getListeDesScores().length+1].setLevel(joueur.getLevel());
+			liste[this.getListeDesScores().length+1].setNom(joueur.getNom());
+			liste[this.getListeDesScores().length+1].setNombreDeplacement(plat.getNombreDeplacement());
+			liste[this.getListeDesScores().length+1].setTimeStampDebut(plat.getTimeStampDebut());
+			liste[this.getListeDesScores().length+1].setTimeStampFin(plat.getTimeStampFin());
+			
+			//stocage de l'objet liste dans un fichier
+			FileOutputStream fos = null;
+			ObjectOutputStream oos = null;
+			try 
+				{
+					
+			
+					fos = new FileOutputStream("Scores\\level"+this.getLevel()+".txt");
+					oos = new ObjectOutputStream(fos);
+					//création du fichier si il n'existe pas
+					File fichier = new File("Scores\\level"+this.getLevel()+".txt");	
+					if (! fichier.exists())
+						{
+						  fichier.createNewFile();
+						}
+					//écriture de l'objet dans le fichier
+					oos.writeObject(this); 	// Serialization
+				} 
+			catch (IOException e)
+				{
+					System.out.println(e.toString());
+				}
+			finally 
+				{
+					try
+						{
+						   fos.close();
+						   oos.close();
+						}
+					catch (IOException e)
+						{
+							System.out.println(e.toString());
+						}
+					
+				}
+			
+		}
+}

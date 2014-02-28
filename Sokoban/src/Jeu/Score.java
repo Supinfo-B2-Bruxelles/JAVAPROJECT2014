@@ -40,7 +40,14 @@ public class Score {
 	public void setLevel(Integer level) {
 		this.level = level;
 	}
-	
+	public Score()
+		{
+			this.setLevel(0);
+			this.setNom("");
+			this.setNombreDeplacement(0);
+			this.setTimeStampDebut(0);
+			this.setTimeStampFin(0);
+		}
 	public Score(Personage joueur, Plateau plat) 
 		{
 			this.setLevel(joueur.getLevel());

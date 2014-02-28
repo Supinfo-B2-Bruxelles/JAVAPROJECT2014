@@ -1,0 +1,429 @@
+package Jeu;
+
+import java.lang.reflect.Array;
+import java.sql.Date;
+import java.util.Scanner;
+import java.io.*; 
+
+import Personage.Personage;
+
+public class Plateau {
+	
+	private Case tabCases [][];
+	private Integer nombreDeplacement;
+	private long timeStampDebut;
+	private long timeStampFin;
+	
+	public long getTimeStampFin()
+		{
+			return this.timeStampFin;
+		}
+	public void setTimeStampFin(long timestamp)
+		{
+			this.timeStampFin=timestamp;
+		}
+	public long getTimeStampDebut()
+		{
+			return this.timeStampDebut;
+		}
+	public void setTimeStampDebut(long timestamp)
+		{
+			this.timeStampDebut=timestamp;
+		}
+	public Integer getNombreDeplacement()
+		{
+			return this.nombreDeplacement;
+		}
+	public void setNombreDeplacement(Integer nbreDepl)
+		{
+			this.nombreDeplacement=nbreDepl;
+		}
+	public Case getTabCases(Integer x, Integer y) 
+		{
+			return tabCases[x][y];
+		}
+
+	//x et y représentent les dimentions du tableau
+	public void setTabCases(Integer x, Integer y)
+		{
+			this.tabCases = new Case [y][x];
+			for (int i = 0; i < y; i++) { //verticale
+				for (int j = 0; j < x; j++) { //horizontale
+					
+					tabCases[i][j] = new Case(" ");
+				}
+			}
+			this.tabCases = tabCases;
+		}
+	public void setTabCasesAvecValeur(Integer x, Integer y, String lettre)
+		{
+			
+					
+					this.tabCases[y][x].setEtat(lettre);
+				
+			
+		}
+	public Plateau()
+		{
+			
+		}
+	public Plateau(String fichier)
+		{
+			this.chargerPlateauDepuisFichier(fichier);
+		}
+	
+	public void chargerPlateauDepuisFichier(String fichier)
+		{
+			this.setNombreDeplacement(0);
+			java.util.Date date= new java.util.Date();
+			setTimeStampDebut(date.getTime());
+			Integer i=0;
+			Integer j=0;
+			Integer x=0;
+			Integer y=0;
+			Integer xMax=0;
+			
+			 Scanner sc = null;
+			 //prise des dimentions maximales du tableau pour l'initialier
+			 try
+				 {
+					 sc = new Scanner(new File(fichier));
+					 while (sc.hasNextLine()) 
+		             {
+						 y++;
+						 x=0;
+		                 for (char c : sc.next().toCharArray()) 
+			                 {
+		                	 	
+		                	 	x++;
+		                	 	
+			                 }
+		                 if (x>xMax)
+			                 {
+			                	xMax=x; 
+			                 }
+		             }
+					 
+					 this.setTabCases(xMax, y);
+					 sc.close();
+					 //remplissage du tableau
+					 sc = new Scanner(new File(fichier));
+					 //System.out.println("yMax:");
+					 //System.out.println(y);
+					 //System.out.println("xMax:");
+					 //System.out.println(xMax);
+			         while (sc.hasNextLine()) 
+			             {
+			        	 	
+			        	 	j=0;
+			                 for (char c : sc.next().toCharArray()) 
+				                 {
+			                	 	String s = Character.toString(c);
+			                	 	//System.out.println(s);
+			                	 	setTabCasesAvecValeur(j, i, s);
+			                	 	j++;
+			                	 	//System.out.println("j:");
+					                //System.out.println(j);
+				                 }
+			                 //System.out.println("j sortie de boucle:");
+			                 //System.out.println(j);
+			                 for (Integer n=j; n<xMax ; n++)
+				                 {
+			                	 	//System.out.println(n);
+			                	 	setTabCasesAvecValeur(n, i, ".");
+				                 }
+			                 
+			                 i++;
+			             }
+			         sc.close();
+				 }
+			 catch (Exception e)
+				{
+					System.out.println(e.toString());
+				}
+			
+		}
+	// renvoie un array avec en [0] y et en [1] x
+	public Integer[] dimentionDeTabCases()
+		{
+			Integer retour[]= new Integer [2];
+			//System.out.println(this.tabCases.length);
+			retour[0]=(this.tabCases.length);
+			retour[1]=0;
+			for (Integer i=0; i<retour[0]; i++)
+				{
+					//System.out.println(i);
+					if (retour[1]<this.tabCases[i].length)
+						{
+							retour[1]=(this.tabCases[i].length);
+						}
+				}
+			
+			return retour;
+		}
+	public void afficherPlateau()
+		{
+			Integer[] dimention = this.dimentionDeTabCases();
+			String ligne="";
+			String caractere="";
+			for (Integer i=0; i<dimention[0]; i++)
+				{
+					ligne="";
+					for (Integer j=0; j<dimention[1]; j++)
+						{
+							
+							if (this.getTabCases(i, j).getEtat().equals("."))
+								{
+									caractere=" ";
+								}
+							else
+								{
+									caractere=this.getTabCases(i, j).getEtat();
+								}
+							ligne+=caractere;
+						}
+					System.out.println(ligne);
+					
+				}
+			String consigne= "se déplacer=> pavé numérique 2, 4, 6 et 8, pour quitter appuyez sur 5, pour recommancer, appuyez sur 9";
+			System.out.println(consigne);
+		}
+	
+	
+	public boolean jeu(Personage joueur){ /*Logique d'un jeu complet.*/
+		int[] coorJoueur=trouveJoueur();
+		int[][] listeObjectifs=trouverObjectifs();
+		int command=0;
+		boolean victoire= false;
+		this.afficherPlateau();
+		
+		Scanner sc = new Scanner(System.in);
+		do{
+			command = Integer.parseInt(sc.next());
+			this.move(coorJoueur, command);
+			this.afficherPlateau();
+			
+			victoire= conditionVictoire(listeObjectifs);
+			if (victoire)
+				{
+					
+					System.out.println("GAGNE!!!");
+					command=5;
+					java.util.Date date= new java.util.Date();
+					this.setTimeStampFin(date.getTime());
+					this.enregistrerLeScore (joueur); 
+					joueur.gagnerUnNiveau();
+				}
+		} while (command!=5 && command!=9);
+		if (command==9)
+			{
+				victoire=true;
+			}
+		return victoire;
+	}
+	
+	public boolean conditionVictoire(int[][] listeObjectifs) /*Vérifie si les storages sont remplis*/
+	{
+		for (int c=0; c < listeObjectifs.length; c++){
+			if (!(this.getTabCases(listeObjectifs[c][0], listeObjectifs[c][1]).getEtat().equals("B"))){
+				return false;
+			}
+		}
+		return true;
+	}
+	
+	public int[][] trouverObjectifs(){ /*Situer les objectifs dans le jeu. Peut être rapidement ré-adapter si on prévoit le cas box déjà au-dessus d'un store*/
+		Integer[] dimension=this.dimentionDeTabCases();
+		int count=0;
+ 		for (int i=0;i < dimension[0]; i++){
+			for (int j=0; j < dimension[1]; j++){
+				if (this.getTabCases(i, j).getEtat().equals("O"))
+					count++;
+			}
+ 		}
+ 		int[][] listeObjectifs= new int[count][2];
+ 		count=0;
+ 		for (int x=0;x < dimension[0]; x++){
+			for (int y=0; y < dimension[1]; y++){
+				if (this.getTabCases(x, y).getEtat().equals("O"))
+				{
+					listeObjectifs[count][0]=x;
+					listeObjectifs[count][1]=y;
+					count++;
+				}
+			}
+ 		}
+ 		return listeObjectifs;
+	}
+	
+	public void move(int[] coorJoueur,int dir) /*Algo de mouvement*/
+	{
+		if (dir==2 || dir==4 || dir==6 || dir==8)
+			{
+				this.setNombreDeplacement(this.getNombreDeplacement()+1);
+			}
+		switch (dir){
+		default: System.out.println("Ah,ah,ah.Petit malin."); break;
+		
+		
+		
+		
+		/*Vers le haut*/
+		case 8: 
+			if(this.getTabCases(coorJoueur[0]-1, coorJoueur[1]).getEtat().equals("="))
+			{
+				System.out.println("Votre tête rencontre un mur. Ouch.");
+			}
+			else if(this.getTabCases(coorJoueur[0]-1, coorJoueur[1]).getEtat().equals("B"))
+			{
+				if(this.getTabCases(coorJoueur[0]-2, coorJoueur[1]).getEtat().equals("=") || this.getTabCases(coorJoueur[0]-2, coorJoueur[1]).getEtat().equals("B"))
+				{
+					System.out.println("La boite ne bouge pas.");
+				}
+				else{
+					this.getTabCases(coorJoueur[0]-1, coorJoueur[1]).setEtat(".");
+					this.getTabCases(coorJoueur[0]-2, coorJoueur[1]).setEtat("B");
+				}
+			}
+			else
+			{
+				this.getTabCases(coorJoueur[0], coorJoueur[1]).setEtat(".");
+				coorJoueur[0]--;
+				this.getTabCases(coorJoueur[0], coorJoueur[1]).setEtat("X");
+			}
+			break;
+			
+		/*Vers la droite*/
+		case 6: 
+			if(this.getTabCases(coorJoueur[0], coorJoueur[1]+1).getEtat().equals("="))
+			{
+				System.out.println("Votre tête rencontre un mur. Ouch.");
+			}
+			else if(this.getTabCases(coorJoueur[0], coorJoueur[1]+1).getEtat().equals("B"))
+			{
+				if (this.getTabCases(coorJoueur[0], coorJoueur[1]+2).getEtat().equals("=") || this.getTabCases(coorJoueur[0], coorJoueur[1]+2).getEtat().equals("B"))
+				{
+					System.out.println("La boite ne bouge pas.");
+				}
+				else
+				{
+					this.getTabCases(coorJoueur[0], coorJoueur[1]+1).setEtat(".");
+					this.getTabCases(coorJoueur[0], coorJoueur[1]+2).setEtat("B");
+				}
+			}
+			else
+			{
+				this.getTabCases(coorJoueur[0], coorJoueur[1]).setEtat(".");
+				coorJoueur[1]++;
+				this.getTabCases(coorJoueur[0], coorJoueur[1]).setEtat("X");
+			}
+			break;
+			
+		/*Vers le bas*/
+		case 2: 
+			if(this.getTabCases(coorJoueur[0]+1, coorJoueur[1]).getEtat().equals("="))
+			{
+				System.out.println("Votre tête rencontre un mur. Ouch.");
+			}
+			else if(this.getTabCases(coorJoueur[0]+1, coorJoueur[1]).getEtat().equals("B"))
+			{
+				if(this.getTabCases(coorJoueur[0]+2, coorJoueur[1]).getEtat().equals("=") || this.getTabCases(coorJoueur[0]+2, coorJoueur[1]).getEtat().equals("B"))
+				{
+					System.out.println("La boite ne bouge pas.");
+				}
+				else{
+					this.getTabCases(coorJoueur[0]+1, coorJoueur[1]).setEtat(".");
+					this.getTabCases(coorJoueur[0]+2, coorJoueur[1]).setEtat("B");
+				}
+			}
+			else
+			{
+				this.getTabCases(coorJoueur[0], coorJoueur[1]).setEtat(".");
+				coorJoueur[0]++;
+				this.getTabCases(coorJoueur[0], coorJoueur[1]).setEtat("X");
+			}
+			break;
+		
+		/*Vers la gauche*/
+		case 4: 
+			if(this.getTabCases(coorJoueur[0], coorJoueur[1]-1).getEtat().equals("="))
+			{
+				System.out.println("Votre tête rencontre un mur. Ouch.");
+			}
+			else if(this.getTabCases(coorJoueur[0], coorJoueur[1]-1).getEtat().equals("B"))
+			{
+				if (this.getTabCases(coorJoueur[0], coorJoueur[1]-2).getEtat().equals("=") || this.getTabCases(coorJoueur[0], coorJoueur[1]-2).getEtat().equals("B"))
+				{
+					System.out.println("La boite ne bouge pas.");
+				}
+				else
+				{
+					this.getTabCases(coorJoueur[0], coorJoueur[1]-1).setEtat(".");
+					this.getTabCases(coorJoueur[0], coorJoueur[1]-2).setEtat("B");
+				}
+			}
+			else
+			{
+				this.getTabCases(coorJoueur[0], coorJoueur[1]).setEtat(".");
+				coorJoueur[1]--;
+				this.getTabCases(coorJoueur[0], coorJoueur[1]).setEtat("X");
+			}
+			break;
+		}
+		return;
+	}
+
+	public int[] trouveJoueur() /*Permet de situer rapidement la position du joueur dans le plateau*/
+	{ 
+		int[] coorJoueur=new int[2];
+		Integer[] dimension=this.dimentionDeTabCases();
+ 		for (int i=0;i < dimension[0]; i++){
+			for (int j=0; j < dimension[1]; j++){
+				if (this.getTabCases(i, j).getEtat().equals("X")){
+					coorJoueur[0]=i;
+					coorJoueur[1]=j;
+				}
+			}
+		}
+		return coorJoueur;
+	}
+	public void enregistrerLeScore (Personage joueur) 
+		{
+			FileOutputStream fos = null;
+			ObjectOutputStream oos = null;
+			try 
+				{
+					Score monScore  = new Score(joueur, this);
+			
+					fos = new FileOutputStream("Scores\\level"+joueur.getLevel()+".txt");
+					oos = new ObjectOutputStream(fos);
+					//création du fichier si il n'existe pas
+					File fichier = new File("Scores\\level"+joueur.getLevel()+".txt");	
+					if (! fichier.exists())
+						{
+						  fichier.createNewFile();
+						}
+					//écriture de l'objet dans le fichier
+					oos.writeObject(monScore); 	// Serialization
+				} 
+			catch (IOException e)
+				{
+					System.out.println(e.toString());
+				}
+			finally 
+				{
+					try
+						{
+						   fos.close();
+						   oos.close();
+						}
+					catch (IOException e)
+						{
+							System.out.println(e.toString());
+						}
+					
+				}
+
+		}
+}
+
