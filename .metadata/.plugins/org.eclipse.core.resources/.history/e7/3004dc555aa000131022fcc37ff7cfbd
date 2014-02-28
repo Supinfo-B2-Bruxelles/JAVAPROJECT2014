@@ -155,7 +155,7 @@ public class Plateau {
 					System.out.println(ligne);
 					
 				}
-			String consigne= "se déplacer=> pavé numérique 2, 4, 6 et 8, pour quitter appuyez sur 5, pour recommancer, appuyez sur 9";
+			String consigne= "se déplacer=> pavé numérique 2, 4, 6 et 8, pour quitter appuyez sur 5";
 			System.out.println(consigne);
 		}
 	
@@ -181,7 +181,7 @@ public class Plateau {
 					command=5;
 					joueur.gagnerUnNiveau();
 				}
-		} while (command!=5 && command!=9);
+		} while (command!=5||command!=9);
 		if (command==9)
 			{
 				victoire=true;
@@ -227,11 +227,7 @@ public class Plateau {
 	{
 		switch (dir){
 		default: System.out.println("Ah,ah,ah.Petit malin."); break;
-		
-		//reset du level
-		case 9:
-			System.out.println("Reset du niveau.");
-			break;
+			
 		/*Vers le haut*/
 		case 8: 
 			if(this.getTabCases(coorJoueur[0]-1, coorJoueur[1]).getEtat().equals("="))

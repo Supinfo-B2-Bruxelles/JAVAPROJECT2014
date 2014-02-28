@@ -4,8 +4,6 @@ import java.lang.reflect.Array;
 import java.util.Scanner;
 import java.io.*; 
 
-import Personage.Personage;
-
 public class Plateau {
 	
 	private Case tabCases [][];
@@ -153,40 +151,25 @@ public class Plateau {
 							ligne+=caractere;
 						}
 					System.out.println(ligne);
-					
 				}
-			String consigne= "se déplacer=> pavé numérique 2, 4, 6 et 8, pour quitter appuyez sur 5, pour recommancer, appuyez sur 9";
-			System.out.println(consigne);
 		}
 	
 	
-	public boolean jeu(Personage joueur){ /*Logique d'un jeu complet.*/
+	public int jeu(){ /*Logique d'un jeu complet.*/
 		int[] coorJoueur=trouveJoueur();
 		int[][] listeObjectifs=trouverObjectifs();
 		int command=0;
-		boolean victoire= false;
-		this.afficherPlateau();
-		
 		Scanner sc = new Scanner(System.in);
 		do{
 			command = Integer.parseInt(sc.next());
 			this.move(coorJoueur, command);
 			this.afficherPlateau();
-			
-			victoire= conditionVictoire(listeObjectifs);
-			if (victoire)
-				{
-					
-					System.out.println("GAGNE!!!");
-					command=5;
-					joueur.gagnerUnNiveau();
-				}
-		} while (command!=5 && command!=9);
-		if (command==9)
-			{
-				victoire=true;
+			if (conditionVictoire(listeObjectifs)){
+				System.out.println("GAGNE!!!");
+				command=5;
 			}
-		return victoire;
+		} while (command!=5);
+		return 0;
 	}
 	
 	public boolean conditionVictoire(int[][] listeObjectifs) /*Vérifie si les storages sont remplis*/
@@ -227,11 +210,7 @@ public class Plateau {
 	{
 		switch (dir){
 		default: System.out.println("Ah,ah,ah.Petit malin."); break;
-		
-		//reset du level
-		case 9:
-			System.out.println("Reset du niveau.");
-			break;
+			
 		/*Vers le haut*/
 		case 8: 
 			if(this.getTabCases(coorJoueur[0]-1, coorJoueur[1]).getEtat().equals("="))

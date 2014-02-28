@@ -34,7 +34,7 @@ public class Game {
 			
 			switch (choix) {
 			case 1:
-				sokoban(joueur);
+				sokoban();
 				break;
 			case 2:
 				score();
@@ -59,16 +59,11 @@ public class Game {
 				}
 			return quitter;
 		}
-	public static void sokoban(Personage joueur)
+	public static void sokoban()
 		{
 			Plateau plat = new Plateau();
-			boolean resteDansJeu= true;
-			while(joueur.getLevel()<11 && resteDansJeu)
-			{
-				plat.chargerPlateauDepuisFichier("lv"+(joueur.getLevel()).toString()+".txt");
-				resteDansJeu=plat.jeu(joueur);
-				
-			}
+			plat.chargerPlateauDepuisFichier("C:\\Users\\sebastien\\Documents\\GitHub\\JAVAPROJECT2014\\Sokoban\\texte.txt");
+			plat.afficherPlateau();
 		}
 	public static void score()
 		{
@@ -80,4 +75,3 @@ public class Game {
 		}
 	
 }
-

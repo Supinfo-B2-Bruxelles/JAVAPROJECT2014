@@ -181,7 +181,7 @@ public class Plateau {
 					command=5;
 					joueur.gagnerUnNiveau();
 				}
-		} while (command!=5 && command!=9);
+		} while (command!=5||command!=9);
 		if (command==9)
 			{
 				victoire=true;

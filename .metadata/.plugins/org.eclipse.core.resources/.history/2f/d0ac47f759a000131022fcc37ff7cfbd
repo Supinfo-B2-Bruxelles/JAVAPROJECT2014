@@ -62,12 +62,12 @@ public class Game {
 	public static void sokoban(Personage joueur)
 		{
 			Plateau plat = new Plateau();
-			boolean resteDansJeu= true;
-			while(joueur.getLevel()<11 && resteDansJeu)
+			while(joueur.getLevel()<11)
 			{
 				plat.chargerPlateauDepuisFichier("lv"+(joueur.getLevel()).toString()+".txt");
-				resteDansJeu=plat.jeu(joueur);
 				
+				
+				plat.jeu(joueur);
 			}
 		}
 	public static void score()

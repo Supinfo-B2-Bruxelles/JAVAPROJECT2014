@@ -15,7 +15,7 @@ public class Personage {
 			System.out.println("Quel nom souhaitez vous donner à votre perso?");
 			nom = sc.next();
 			this.setNom(nom);
-			this.setLevel(1);
+			this.setLevel(0);
 		}
 	
 	public void setNom(String nom)
@@ -34,10 +34,6 @@ public class Personage {
 
 	public void setLevel(Integer level) {
 		this.level = level;
-	}
-	public void gagnerUnNiveau()
-	{
-		this.setLevel(this.getLevel()+1);
 	}
 	
 
