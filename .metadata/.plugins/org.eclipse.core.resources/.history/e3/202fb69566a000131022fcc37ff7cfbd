@@ -210,8 +210,7 @@ public class Plateau {
 					System.out.println("GAGNE!!!");
 					command=5;
 					java.util.Date date= new java.util.Date();
-					this.setTimeStampFin(date.getTime());
-					this.enregistrerLeScore (joueur); 
+					setTimeStampFin(date.getTime());
 					joueur.gagnerUnNiveau();
 				}
 		} while (command!=5 && command!=9);
@@ -397,13 +396,7 @@ public class Plateau {
 			
 					fos = new FileOutputStream("Scores\\level"+joueur.getLevel()+".txt");
 					oos = new ObjectOutputStream(fos);
-					//création du fichier si il n'existe pas
-					File fichier = new File("Scores\\level"+joueur.getLevel()+".txt");	
-					if (! fichier.exists())
-						{
-						  fichier.createNewFile();
-						}
-					//écriture de l'objet dans le fichier
+			
 					oos.writeObject(monScore); 	// Serialization
 				} 
 			catch (IOException e)

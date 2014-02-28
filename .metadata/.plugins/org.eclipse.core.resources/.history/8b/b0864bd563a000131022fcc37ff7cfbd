@@ -69,7 +69,6 @@ public class Game {
 				plat.chargerPlateauDepuisFichier("lv"+(joueur.getLevel()).toString()+".txt");
 				resteDansJeu=plat.jeu(joueur);
 				
-				
 			}
 		}
 	public static void score()
