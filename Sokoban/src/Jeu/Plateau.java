@@ -154,5 +154,180 @@ public class Plateau {
 				}
 		}
 	
+	
+	public int jeu(){ /*Logique d'un jeu complet.*/
+		int[] coorJoueur=trouveJoueur();
+		int[][] listeObjectifs=trouverObjectifs();
+		int command=0;
+		Scanner sc = new Scanner(System.in);
+		do{
+			command = Integer.parseInt(sc.next());
+			this.move(coorJoueur, command);
+			this.afficherPlateau();
+			if (conditionVictoire(listeObjectifs)){
+				System.out.println("GAGNE!!!");
+				command=5;
+			}
+		} while (command!=5);
+		return 0;
+	}
+	
+	public boolean conditionVictoire(int[][] listeObjectifs) /*Vérifie si les storages sont remplis*/
+	{
+		for (int c=0; c < listeObjectifs.length; c++){
+			if (!(this.getTabCases(listeObjectifs[c][0], listeObjectifs[c][1]).getEtat().equals("B"))){
+				return false;
+			}
+		}
+		return true;
+	}
+	
+	public int[][] trouverObjectifs(){ /*Situer les objectifs dans le jeu. Peut être rapidement ré-adapter si on prévoit le cas box déjà au-dessus d'un store*/
+		Integer[] dimension=this.dimentionDeTabCases();
+		int count=0;
+ 		for (int i=0;i < dimension[0]; i++){
+			for (int j=0; j < dimension[1]; j++){
+				if (this.getTabCases(i, j).getEtat().equals("O"))
+					count++;
+			}
+ 		}
+ 		int[][] listeObjectifs= new int[count][2];
+ 		count=0;
+ 		for (int x=0;x < dimension[0]; x++){
+			for (int y=0; y < dimension[1]; y++){
+				if (this.getTabCases(x, y).getEtat().equals("O"))
+				{
+					listeObjectifs[count][0]=x;
+					listeObjectifs[count][1]=y;
+					count++;
+				}
+			}
+ 		}
+ 		return listeObjectifs;
+	}
+	
+	public void move(int[] coorJoueur,int dir) /*Algo de mouvement*/
+	{
+		switch (dir){
+		default: System.out.println("Ah,ah,ah.Petit malin."); break;
+			
+		/*Vers le haut*/
+		case 8: 
+			if(this.getTabCases(coorJoueur[0]-1, coorJoueur[1]).getEtat().equals("="))
+			{
+				System.out.println("Votre tête rencontre un mur. Ouch.");
+			}
+			else if(this.getTabCases(coorJoueur[0]-1, coorJoueur[1]).getEtat().equals("B"))
+			{
+				if(this.getTabCases(coorJoueur[0]-2, coorJoueur[1]).getEtat().equals("=") || this.getTabCases(coorJoueur[0]-2, coorJoueur[1]).getEtat().equals("B"))
+				{
+					System.out.println("La boite ne bouge pas.");
+				}
+				else{
+					this.getTabCases(coorJoueur[0]-1, coorJoueur[1]).setEtat(".");
+					this.getTabCases(coorJoueur[0]-2, coorJoueur[1]).setEtat("B");
+				}
+			}
+			else
+			{
+				this.getTabCases(coorJoueur[0], coorJoueur[1]).setEtat(".");
+				coorJoueur[0]--;
+				this.getTabCases(coorJoueur[0], coorJoueur[1]).setEtat("X");
+			}
+			break;
+			
+		/*Vers la droite*/
+		case 6: 
+			if(this.getTabCases(coorJoueur[0], coorJoueur[1]+1).getEtat().equals("="))
+			{
+				System.out.println("Votre tête rencontre un mur. Ouch.");
+			}
+			else if(this.getTabCases(coorJoueur[0], coorJoueur[1]+1).getEtat().equals("B"))
+			{
+				if (this.getTabCases(coorJoueur[0], coorJoueur[1]+2).getEtat().equals("=") || this.getTabCases(coorJoueur[0], coorJoueur[1]+2).getEtat().equals("B"))
+				{
+					System.out.println("La boite ne bouge pas.");
+				}
+				else
+				{
+					this.getTabCases(coorJoueur[0], coorJoueur[1]+1).setEtat(".");
+					this.getTabCases(coorJoueur[0], coorJoueur[1]+2).setEtat("B");
+				}
+			}
+			else
+			{
+				this.getTabCases(coorJoueur[0], coorJoueur[1]).setEtat(".");
+				coorJoueur[1]++;
+				this.getTabCases(coorJoueur[0], coorJoueur[1]).setEtat("X");
+			}
+			break;
+			
+		/*Vers le bas*/
+		case 2: 
+			if(this.getTabCases(coorJoueur[0]+1, coorJoueur[1]).getEtat().equals("="))
+			{
+				System.out.println("Votre tête rencontre un mur. Ouch.");
+			}
+			else if(this.getTabCases(coorJoueur[0]+1, coorJoueur[1]).getEtat().equals("B"))
+			{
+				if(this.getTabCases(coorJoueur[0]+2, coorJoueur[1]).getEtat().equals("=") || this.getTabCases(coorJoueur[0]+2, coorJoueur[1]).getEtat().equals("B"))
+				{
+					System.out.println("La boite ne bouge pas.");
+				}
+				else{
+					this.getTabCases(coorJoueur[0]+1, coorJoueur[1]).setEtat(".");
+					this.getTabCases(coorJoueur[0]+2, coorJoueur[1]).setEtat("B");
+				}
+			}
+			else
+			{
+				this.getTabCases(coorJoueur[0], coorJoueur[1]).setEtat(".");
+				coorJoueur[0]++;
+				this.getTabCases(coorJoueur[0], coorJoueur[1]).setEtat("X");
+			}
+			break;
+		
+		/*Vers la gauche*/
+		case 4: 
+			if(this.getTabCases(coorJoueur[0], coorJoueur[1]-1).getEtat().equals("="))
+			{
+				System.out.println("Votre tête rencontre un mur. Ouch.");
+			}
+			else if(this.getTabCases(coorJoueur[0], coorJoueur[1]-1).getEtat().equals("B"))
+			{
+				if (this.getTabCases(coorJoueur[0], coorJoueur[1]-2).getEtat().equals("=") || this.getTabCases(coorJoueur[0], coorJoueur[1]-2).getEtat().equals("B"))
+				{
+					System.out.println("La boite ne bouge pas.");
+				}
+				else
+				{
+					this.getTabCases(coorJoueur[0], coorJoueur[1]-1).setEtat(".");
+					this.getTabCases(coorJoueur[0], coorJoueur[1]-2).setEtat("B");
+				}
+			}
+			else
+			{
+				this.getTabCases(coorJoueur[0], coorJoueur[1]).setEtat(".");
+				coorJoueur[1]--;
+				this.getTabCases(coorJoueur[0], coorJoueur[1]).setEtat("X");
+			}
+			break;
+		}
+		return;
+	}
 
+	public int[] trouveJoueur() /*Permet de situer rapidement la position du joueur dans le plateau*/
+	{ 
+		int[] coorJoueur=new int[2];
+		Integer[] dimension=this.dimentionDeTabCases();
+ 		for (int i=0;i < dimension[0]; i++){
+			for (int j=0; j < dimension[1]; j++){
+				if (this.getTabCases(i, j).getEtat().equals("X")){
+					coorJoueur[0]=i;
+					coorJoueur[1]=j;
+				}
+			}
+		}
+		return coorJoueur;
+	}
 }
