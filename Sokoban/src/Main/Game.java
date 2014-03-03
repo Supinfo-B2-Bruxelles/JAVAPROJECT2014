@@ -2,6 +2,7 @@ package Main;
 
 import java.util.Scanner;
 
+import Jeu.ListeScore;
 import Jeu.Plateau;
 import Personage.Personage;
 
@@ -74,37 +75,11 @@ public class Game {
 		}
 	public static void score()
 		{
-			Scanner sc = new Scanner(System.in);
-			Integer niveau=0;
+			ListeScore liste = new ListeScore(1);
+			//liste.genererListeAPartirDuFichier(1);
+			liste.genererListeAPartirDesFichier();
+			liste.afficherLesScores();
 			
-			while (niveau<1 || niveau>10)
-				{
-					System.out.println("De quel niveau voulez vous voir les scores (entre 1 et 10)");
-					
-					niveau = Integer.parseInt(sc.next());
-				}
-			
-			
-	//		FileInputStream fis = null;
-	//		ObjectInputStream ois = null;
-	//		try 
-			{
-	//			fis = new FileInputStream("Scores\\level"+niveau+".txt");
-		//		ois = new ObjectInputStream(fis);
-			//	Score = (Animal) ois.readObject();
-				//System.out.println("Age of my dog: " + dog.getAge());
-				//System.out.println("Color of my dog: " + dog.getColor());
-				//if (dog.isVaccinated())
-				//System.out.println("My animal is vaccinated");
-			} 
-//			catch (IOexception e) 
-			{
-		//		System.out.println(e.toString());
-			} 
-		//	finally 
-			{ 
-				
-			}
 
 		
 		}

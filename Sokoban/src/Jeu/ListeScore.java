@@ -4,9 +4,9 @@ import java.io.*;
 
 import Personage.Personage;
 
-public class ListeScore {
-	private Score [] listeDesScores;
-	private Integer level;
+public class ListeScore implements java.io.Serializable {
+	protected Score [] listeDesScores;
+	protected Integer level;
 
 	public Score[] getListeDesScores() 
 		{
@@ -32,6 +32,12 @@ public class ListeScore {
 		{
 			this.initialisationListe();
 		}
+	public ListeScore (Integer level)
+		{
+			this.initialisationListe();
+			this.setLevel(level);
+		}
+	
 	public void initialisationListe()
 		{
 			Score liste[]= new Score [0];
@@ -123,6 +129,8 @@ public class ListeScore {
 			//stocage de l'objet liste dans un fichier
 			FileOutputStream fos = null;
 			ObjectOutputStream oos = null;
+			File MyFile = new File("Scores\\level"+this.getLevel()+".txt");
+			MyFile.delete(); 
 			try 
 				{
 					
@@ -156,5 +164,117 @@ public class ListeScore {
 					
 				}
 			
+		}
+	
+	public void genererListeAPartirDesFichier()
+		{
+			String[] listeFichierScores;
+			this.setTailleDuTableauDeScore();
+			
+			
+			try
+				{      
+		         
+				File dossier = new File("Scores\\level"+this.getLevel());
+		         
+		         
+		         listeFichierScores = dossier.list();
+		         
+		         Integer i=0;
+		         
+		         
+		         for (String fichier : listeFichierScores)
+		         	{
+		        	 	this.setLevel(level);
+			 			FileInputStream fis = null;
+			 			ObjectInputStream ois = null;
+			 			//File fichierAOuvrir = new File(fichier.getName());
+			 			
+			 			
+	 					try 
+	 						{
+	 							
+	 							fis = new FileInputStream("Scores\\level"+this.getLevel()+"\\"+fichier);
+	 							ois = new ObjectInputStream(fis);
+	 							Score scoreUnite = new Score();
+	 							try 
+	 								{
+	 									scoreUnite = (Score) ois.readObject();
+	 									this.listeDesScores[i] = scoreUnite;
+	 								} 
+	 							catch (ClassNotFoundException e) 
+	 								{
+	 								
+	 									e.printStackTrace();
+	 								}
+	 							//this.listeDesScores = liste.listeDesScores;
+	 							
+	 						} 
+	 					catch (IOException e) 
+	 						{
+	 							System.out.println(e.toString());
+	 						} 
+	 					finally 
+	 						{ 
+	 							try
+	 								{
+	 									fis.close();
+	 									ois.close();
+	 								}
+	 							catch (IOException e) 
+	 								{
+	 									System.out.println(e.toString());
+	 								}
+	 							
+	 							
+	 						}
+			 				
+		         	}
+		         
+		      }
+			catch(Exception e)
+				{
+		        
+		         e.printStackTrace();
+				}
+		}
+	public void setTailleDuTableauDeScore()
+		{
+			String[] listeFichierScores;
+			
+			
+			     
+		         
+			File dossier = new File("Scores\\level"+this.getLevel());
+	         
+	         
+	         listeFichierScores = dossier.list();
+	         
+	         Integer i=listeFichierScores.length;
+	         for (String fichier : listeFichierScores)
+	         	{
+	        	 i++;
+	         	}
+	         Score liste[]= new Score [i];
+			this.setListeDesScores(liste);
+	         
+				
+		         
+		         
+		         
+		}
+	public void afficherLesScores()
+		{
+			Integer classement=0;
+			for (Score score : this.getListeDesScores())
+				{
+					long temps= score.getTimeStampFin()-score.getTimeStampDebut();
+					long minutes = temps/(60*1000);
+					long secondes = (temps%(60*1000))/1000;
+					
+					classement++;
+					
+					System.out.println(classement+". pseudo: "+score.getNom()+" temps: "+minutes+"m"+secondes+"s mouvement: "+score.getNombreDeplacement());
+				}
 		}
 }

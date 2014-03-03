@@ -211,8 +211,10 @@ public class Plateau {
 					command=5;
 					java.util.Date date= new java.util.Date();
 					this.setTimeStampFin(date.getTime());
-					ListeScore liste = new ListeScore();
-					liste.miseAJourDesScores(joueur, this);
+					//ListeScore liste = new ListeScore();
+					//liste.miseAJourDesScores(joueur, this);
+					Score monScore = new Score (joueur, this);
+					monScore.ecritureDeScoreDansFichier();
 					joueur.gagnerUnNiveau();
 				}
 		} while (command!=5 && command!=9);

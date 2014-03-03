@@ -1,8 +1,15 @@
 package Jeu;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+
 import Personage.Personage;
 
-public class Score {
+public class Score implements java.io.Serializable{
 	
 	private Integer nombreDeplacement;
 	private long timeStampDebut;
@@ -55,6 +62,95 @@ public class Score {
 			this.setNombreDeplacement(plat.getNombreDeplacement());
 			this.setTimeStampDebut(plat.getTimeStampDebut());
 			this.setTimeStampFin(plat.getTimeStampFin());
+		}
+	public void setScoreAPartirDuFichier () //à faire et modifer
+		{
+		FileInputStream fis = null;
+		ObjectInputStream ois = null;
+		long timeStamp;
+		java.util.Date date= new java.util.Date();
+		timeStamp=date.getTime();
+		File fichier = new File("Scores\\level"+this.getLevel()+"\\"+timeStamp+".txt");
+		if (fichier.exists())
+			{
+				try 
+					{
+						
+						fis = new FileInputStream("Scores\\level"+this.getLevel()+"\\"+timeStamp+".txt");
+						ois = new ObjectInputStream(fis);
+						//try 
+							//{
+								//liste = (Score) ois.readObject();
+							//} 
+						//catch (ClassNotFoundException e) 
+							//{
+							
+								//e.printStackTrace();
+							//}
+						//this.listeDesScores = liste.listeDesScores;
+						
+					} 
+				catch (IOException e) 
+					{
+						System.out.println(e.toString());
+					} 
+				finally 
+					{ 
+						try
+							{
+								fis.close();
+								ois.close();
+							}
+						catch (IOException e) 
+							{
+								System.out.println(e.toString());
+							}
+						
+						
+					}
+			}
+		}
+	public void ecritureDeScoreDansFichier()
+		{
+			FileOutputStream fos = null;
+			ObjectOutputStream oos = null;
+			try 
+				{
+					
+					long timeStamp;
+					java.util.Date date= new java.util.Date();
+					timeStamp=date.getTime();
+					fos = new FileOutputStream("Scores\\level"+this.getLevel()+"\\"+timeStamp+".txt");
+					oos = new ObjectOutputStream(fos);
+					
+					
+					
+						
+					File fichier = new File("Scores\\level"+this.getLevel()+"\\"+timeStamp+".txt");	
+					
+					fichier.createNewFile();
+						
+					//écriture de l'objet dans le fichier
+					oos.writeObject(this); 	// Serialization
+				} 
+			catch (IOException e)
+				{
+					System.out.println(e.toString());
+				}
+			finally 
+				{
+					try
+						{
+						   fos.close();
+						   oos.close();
+						}
+					catch (IOException e)
+						{
+							System.out.println(e.toString());
+						}
+					
+				}
+			
 		}
 
 }
