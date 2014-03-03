@@ -245,17 +245,15 @@ public class ListeScore implements java.io.Serializable {
 		}
 	public void classementParOrdre ()
 		{
-			
+			Score [] tabScore = new Score [this.getListeDesScores().length];
 			int sortir=0;
 			
 			while (sortir==0)
 				{
 					sortir=1;
 					
-					
-					for (int i=0;i<this.getListeDesScores().length-1;i=i+1)
+					for (int i=0;i<this.getListeDesScores().length;i=i+1)
 						{
-							
 							if (this.getListeDesScores()[i].getNombreDeplacement()>this.getListeDesScores()[i+1].getNombreDeplacement())
 								{
 									Score plus_petit=this.getListeDesScores()[i+1];
@@ -263,9 +261,8 @@ public class ListeScore implements java.io.Serializable {
 									this.getListeDesScores()[i+1]= plus_grand;
 									this.getListeDesScores()[i]=plus_petit;
 									sortir=0;
-									
 								}
-							else if (this.getListeDesScores()[i].getNombreDeplacement().equals(this.getListeDesScores()[i+1].getNombreDeplacement()))
+							else if (this.getListeDesScores()[i].getNombreDeplacement()==this.getListeDesScores()[i+1].getNombreDeplacement())
 								{
 									if (this.getListeDesScores()[i].getTimeStampFin()-this.getListeDesScores()[i].getTimeStampDebut()>this.getListeDesScores()[i+1].getTimeStampFin()-this.getListeDesScores()[i+1].getTimeStampDebut())
 										{
@@ -274,9 +271,7 @@ public class ListeScore implements java.io.Serializable {
 											this.getListeDesScores()[i+1]= plus_grand;
 											this.getListeDesScores()[i]=plus_petit;
 											sortir=0;
-											
 										}
-									
 								}
 						}
 				}
