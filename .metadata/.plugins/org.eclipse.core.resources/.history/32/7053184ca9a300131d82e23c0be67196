@@ -96,7 +96,6 @@ public class Plateau {
 			                 {
 		                	 	
 		                	 	x++;
-		                	 
 		                	 	
 			                 }
 		                 if (x>xMax)
