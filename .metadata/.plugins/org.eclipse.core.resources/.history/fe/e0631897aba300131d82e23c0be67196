@@ -55,12 +55,7 @@ public class Main {
 					}
 				
 				
-				try {
-					quitter=Game.lancementApplication (choixMenu, joueur);//cette ligne lance l'application choisie et retourne le choix de l'utilisateur si il a décidé de quitter l'application à la fin
-				} catch (IOException e) {
-					
-					e.printStackTrace();
-				} 
+				quitter=Game.lancementApplication (choixMenu, joueur); //cette ligne lance l'application choisie et retourne le choix de l'utilisateur si il a décidé de quitter l'application à la fin
 			}
 		
 

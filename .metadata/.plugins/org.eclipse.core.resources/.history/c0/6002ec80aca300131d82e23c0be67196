@@ -42,11 +42,23 @@ public class Game {
 			switch (choix) {
 			case 1:
 				sokoban(joueur);
-				
+				while (quitter<1 || quitter>3)
+				{
+					System.out.println("Quitter?");
+					System.out.println("1) Oui");
+					System.out.println("2) Non");
+					quitter = Integer.parseInt(scan.next());
+				}
 				break;
 			case 2:
 				score();
-				
+				while (quitter<1 || quitter>3)
+				{
+					System.out.println("Quitter?");
+					System.out.println("1) Oui");
+					System.out.println("2) Non");
+					quitter = Integer.parseInt(scan.next());
+				}
 				break;
 
 			case 3:
@@ -54,7 +66,13 @@ public class Game {
 				break;
 			case 4:
 				sokobanCustom(joueur);
-				
+				while (quitter<1 || quitter>3)
+				{
+					System.out.println("Quitter?");
+					System.out.println("1) Oui");
+					System.out.println("2) Non");
+					quitter = Integer.parseInt(scan.next());
+				}
 				break;
 
 
@@ -63,13 +81,7 @@ public class Game {
 			}
 			
 			
-			while (quitter<1 || quitter>3)
-			{
-				System.out.println("Quitter?");
-				System.out.println("1) Oui");
-				System.out.println("2) Non");
-				quitter = Integer.parseInt(scan.next());
-			}
+			
 			return quitter;
 		}
 	public static void sokoban(Personage joueur)
@@ -255,8 +267,6 @@ public class Game {
 			    writer.append(ligne);
 				}
 			}
-			sc.close();
-			
 		}catch (IOException e){
 			e.printStackTrace();
 		} 

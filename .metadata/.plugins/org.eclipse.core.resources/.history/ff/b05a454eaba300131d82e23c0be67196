@@ -33,20 +33,16 @@ public class Game {
 			return retour;
 			
 		}
-	public static Integer lancementApplication (Integer choix, Personage joueur) throws IOException
+	public static Integer lancementApplication (Integer choix, Personage joueur)
 		{
 			Scanner sc = new Scanner(System.in);
-			Scanner scan = new Scanner(System.in);
-			Integer quitter=0;
 			
 			switch (choix) {
 			case 1:
 				sokoban(joueur);
-				
 				break;
 			case 2:
 				score();
-				
 				break;
 
 			case 3:
@@ -54,7 +50,6 @@ public class Game {
 				break;
 			case 4:
 				sokobanCustom(joueur);
-				
 				break;
 
 
@@ -62,14 +57,14 @@ public class Game {
 				break;
 			}
 			
-			
+			Integer quitter=0;
 			while (quitter<1 || quitter>3)
-			{
-				System.out.println("Quitter?");
-				System.out.println("1) Oui");
-				System.out.println("2) Non");
-				quitter = Integer.parseInt(scan.next());
-			}
+				{
+					System.out.println("Quitter?");
+					System.out.println("1) Oui");
+					System.out.println("2) Non");
+					quitter = Integer.parseInt(sc.next());
+				}
 			return quitter;
 		}
 	public static void sokoban(Personage joueur)
@@ -255,8 +250,6 @@ public class Game {
 			    writer.append(ligne);
 				}
 			}
-			sc.close();
-			
 		}catch (IOException e){
 			e.printStackTrace();
 		} 

@@ -256,7 +256,7 @@ public class Game {
 				}
 			}
 			sc.close();
-			
+			sc = new Scanner(System.in);
 		}catch (IOException e){
 			e.printStackTrace();
 		} 

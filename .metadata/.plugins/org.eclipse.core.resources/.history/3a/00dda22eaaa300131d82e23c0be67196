@@ -1,8 +1,6 @@
 package Main;
 
 import java.io.File;
-import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.Scanner;
 
 import Jeu.ListeScore;
@@ -33,20 +31,16 @@ public class Game {
 			return retour;
 			
 		}
-	public static Integer lancementApplication (Integer choix, Personage joueur) throws IOException
+	public static Integer lancementApplication (Integer choix, Personage joueur)
 		{
 			Scanner sc = new Scanner(System.in);
-			Scanner scan = new Scanner(System.in);
-			Integer quitter=0;
 			
 			switch (choix) {
 			case 1:
 				sokoban(joueur);
-				
 				break;
 			case 2:
 				score();
-				
 				break;
 
 			case 3:
@@ -54,7 +48,6 @@ public class Game {
 				break;
 			case 4:
 				sokobanCustom(joueur);
-				
 				break;
 
 
@@ -62,14 +55,14 @@ public class Game {
 				break;
 			}
 			
-			
+			Integer quitter=0;
 			while (quitter<1 || quitter>3)
-			{
-				System.out.println("Quitter?");
-				System.out.println("1) Oui");
-				System.out.println("2) Non");
-				quitter = Integer.parseInt(scan.next());
-			}
+				{
+					System.out.println("Quitter?");
+					System.out.println("1) Oui");
+					System.out.println("2) Non");
+					quitter = Integer.parseInt(sc.next());
+				}
 			return quitter;
 		}
 	public static void sokoban(Personage joueur)
@@ -117,10 +110,8 @@ public class Game {
 			         
 			         for (String fichier : listePlateauCustom)
 			         	{
-			        	 	
 			        	 	n=i+1;
 			        	 	System.out.println(n+". "+fichier);
-			        	 	i++;
 			         	}
 			         choix = Integer.parseInt(sc.next());
 			         String niveauChoisi=listePlateauCustom[choix-1];
@@ -152,9 +143,9 @@ public class Game {
 
 		
 		}
-	public static void creerSonProporeNiveau() throws IOException
+	public static void creerSonProporeNiveau()
 		{
-			mapCreator();
+			
 		}
 	public static Integer menuDesScores()
 		{
@@ -168,104 +159,6 @@ public class Game {
 				}
 			return niveau;
 		}
-	public static void mapCreator() {
-		
-		Scanner sc = new Scanner(System.in); //Scanner les touches entrées
-		
-		Integer cpt =0;
-		Integer lgmax =0;
-		String niveau;
-		boolean enreg=true;
-		boolean terminator = false; //Permet de savoir si l'utilisateur fini ou pas de créer la map
-		System.out.println("Bienvenue sur le map creator !\n");
-		System.out.println("Convention de Nommage :\n = -> mur\n X -> joueur\n B -> boite\nO -> emplacement");
-		System.out.println("Si vous voulez retourner à la ligne, pressez Enter.\nPour arreter la saisie du niveau, appuyez sur P sur une ligne unique.\n");
-		System.out.println("Veuillez donner un nom a votre niveau : ");
-		niveau = "custom//"+sc.nextLine()+".sok";
-		PrintWriter writer = null;
-		Integer choix=2;
-		File fichier =new File(niveau);
-		
-		System.out.println("Vous pouvez maintenant editer votre map.\n");
-		
-		try{
-			
-				writer = new PrintWriter(niveau);
-				
-				
-		
-				
-			while(terminator == false){
-				char[] line = sc.next().toCharArray();
-				
-				boolean marqueur = true;
-				System.out.println("Ligne inscrite");//ok
-				System.out.println(line);//ok
-				String ligne="";
-				String separator = System.getProperty("line.separator");
-			
-				for(int i =0; i<line.length; i++){
-					ligne = ligne + Character.toString(line[i]);
-				}							
-				ligne= ligne+separator;
-				System.out.println("String "+ligne);
-				
-				if(cpt.equals(0)){
-					cpt++;
-					for(int i=0;i<line.length-1;i++){
-						if(line[i]!='='){
-							System.out.println("La premiere ne peut contenir que des \"=\".\nRecommencez la ligne.\n");
-				    		enreg=false;
-						}
-					}
-				}
-				
-				else if((line[0]!='=' || line[line.length-1]!='=')&&line[0]!='P'){
-					System.out.println("Vous avez fait une erreur aux extremites du tableau.\nRecommencez la ligne.\n");
-					enreg=false;
-				}
-				
-			    
-			    for(int i=0; i<line.length-1; i++){
-			    	
-			    	if (i>lgmax)
-			    	{
-			    		lgmax=i;
-			    	}
-			    	if(line[i]!='X'&&line[i]!='B'&&line[i]!='.'&&line[i]!= '='){
-			    		System.out.println("Vous avez une erreur. "+line[i]+" n'est pas un caractere correct.\nRecommencez la ligne.\n");
-			    		marqueur = false;
-			    		break;
-			    	}
-			    	
-		    	
-			    	
-			    
-			    }	
-			    if(line[0]=='P'){
-		    		terminator= true;
-		    		ligne="";
-		    		for (int j=0; j<=lgmax;j++)
-		    		{
-		    			ligne=ligne+"=";
-		    		}
-		    		
-		    		System.out.println("Votre niveau est pret. Bon jeu !");}
-				if(marqueur && enreg){
-			    writer.append(ligne);
-				}
-			}
-			sc.close();
-			
-		}catch (IOException e){
-			e.printStackTrace();
-		} 
-		finally{
-			if (writer != null){writer.close();}
-			sc.close();
-		}
-		
-	}
 	
 }
 
