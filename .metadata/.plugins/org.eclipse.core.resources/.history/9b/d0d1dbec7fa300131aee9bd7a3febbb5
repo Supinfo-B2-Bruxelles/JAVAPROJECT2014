@@ -1,7 +1,6 @@
 package Jeu;
 
 import java.io.*; 
-import java.util.Scanner;
 
 import Personage.Personage;
 
@@ -315,9 +314,8 @@ public class ListeScore implements java.io.Serializable {
 		}
 	public void afficherLesScores()
 		{
-			
 			Integer classement=0;
-			
+			System.out.println(this.getListeDesScores()[1].getNom());
 			for (Score score : this.getListeDesScores())
 				{
 					long temps= score.getTimeStampFin()-score.getTimeStampDebut();
@@ -329,5 +327,4 @@ public class ListeScore implements java.io.Serializable {
 					System.out.println(classement+". pseudo: "+score.getNom()+" temps: "+minutes+"m"+secondes+"s mouvement: "+score.getNombreDeplacement());
 				}
 		}
-	
 }

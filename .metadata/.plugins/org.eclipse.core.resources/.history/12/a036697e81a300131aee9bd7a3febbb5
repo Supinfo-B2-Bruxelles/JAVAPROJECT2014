@@ -190,48 +190,40 @@ public class Plateau {
 		}
 	
 	
-	public boolean jeu(Personage joueur)
-		{ /*Logique d'un jeu complet.*/
+	public boolean jeu(Personage joueur){ /*Logique d'un jeu complet.*/
+		int[] coorJoueur=trouveJoueur();
+		int[][] listeObjectifs=trouverObjectifs();
+		int command=0;
+		boolean victoire= false;
+		this.afficherPlateau();
 		
-			System.out.println("Les services de Sa Majesté la reine ont perdu dans leur entrepot l'arche bien nomé.");
-			System.out.println("Les responsables ont appelé Indiana Jones à la rescousse, se disant que si il l'avait déja retrouvée une fois, il pourait bien la retrouver une seconde fois");
-			System.out.println("Ce pendant, ce dernier est un peut trop occupé en ce moment avec les extra-terrestre (ou sa blonde). Il vous a donc mandaté pour le remplacer.");
-			System.out.println("Vous montrerez vous à la hauteur d'un héros tels que lui?");
-		
-			int[] coorJoueur=trouveJoueur();
-			int[][] listeObjectifs=trouverObjectifs();
-			int command=0;
-			boolean victoire= false;
+		Scanner sc = new Scanner(System.in);
+		do{
+			command = Integer.parseInt(sc.next());
+			this.move(coorJoueur, command);
 			this.afficherPlateau();
 			
-			Scanner sc = new Scanner(System.in);
-			do{
-				command = Integer.parseInt(sc.next());
-				this.move(coorJoueur, command);
-				this.afficherPlateau();
-				
-				victoire= conditionVictoire(listeObjectifs);
-				if (victoire)
-					{
-						
-						System.out.println("GAGNE!!!");
-						System.out.println("Bravo, vous avez réussi à retrouver quelque chose dans ce fouillit!!!");
-						command=5;
-						java.util.Date date= new java.util.Date();
-						this.setTimeStampFin(date.getTime());
-						//ListeScore liste = new ListeScore();
-						//liste.miseAJourDesScores(joueur, this);
-						Score monScore = new Score (joueur, this);
-						monScore.ecritureDeScoreDansFichier();
-						joueur.gagnerUnNiveau();
-					}
-			} while (command!=5 && command!=9);
-			if (command==9)
+			victoire= conditionVictoire(listeObjectifs);
+			if (victoire)
 				{
-					victoire=true;
+					
+					System.out.println("GAGNE!!!");
+					command=5;
+					java.util.Date date= new java.util.Date();
+					this.setTimeStampFin(date.getTime());
+					//ListeScore liste = new ListeScore();
+					//liste.miseAJourDesScores(joueur, this);
+					Score monScore = new Score (joueur, this);
+					monScore.ecritureDeScoreDansFichier();
+					joueur.gagnerUnNiveau();
 				}
-			return victoire;
-		}
+		} while (command!=5 && command!=9);
+		if (command==9)
+			{
+				victoire=true;
+			}
+		return victoire;
+	}
 	
 	public boolean conditionVictoire(int[][] listeObjectifs) /*Vérifie si les storages sont remplis*/
 	{

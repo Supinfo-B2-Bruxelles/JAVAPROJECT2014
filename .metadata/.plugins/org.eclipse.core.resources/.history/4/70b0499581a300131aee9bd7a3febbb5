@@ -193,8 +193,7 @@ public class Plateau {
 	public boolean jeu(Personage joueur)
 		{ /*Logique d'un jeu complet.*/
 		
-			System.out.println("Les services de Sa Majesté la reine ont perdu dans leur entrepot l'arche bien nomé.");
-			System.out.println("Les responsables ont appelé Indiana Jones à la rescousse, se disant que si il l'avait déja retrouvée une fois, il pourait bien la retrouver une seconde fois");
+			System.out.println("Les services de Sa Majesté la reine ont perdu dans leur entrepot l'arche bien nomé. Les responsables ont appelé Indiana Jones à la rescousse, se disant que si il l'avait déja retrouvée une fois, il pourait bien la retrouver une seconde fois");
 			System.out.println("Ce pendant, ce dernier est un peut trop occupé en ce moment avec les extra-terrestre (ou sa blonde). Il vous a donc mandaté pour le remplacer.");
 			System.out.println("Vous montrerez vous à la hauteur d'un héros tels que lui?");
 		

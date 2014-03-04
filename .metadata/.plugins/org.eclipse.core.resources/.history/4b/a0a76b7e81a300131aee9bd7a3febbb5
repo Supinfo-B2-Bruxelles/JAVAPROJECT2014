@@ -16,7 +16,6 @@ public class Personage {
 			nom = sc.next();
 			this.setNom(nom);
 			this.setLevel(1);
-			
 		}
 	
 	public void setNom(String nom)

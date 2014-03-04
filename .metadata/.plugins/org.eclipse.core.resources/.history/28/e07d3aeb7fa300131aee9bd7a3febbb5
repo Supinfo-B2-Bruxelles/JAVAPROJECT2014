@@ -75,9 +75,7 @@ public class Game {
 		}
 	public static void score()
 		{
-			Integer niveau;
-			niveau = menuDesScores();
-			ListeScore liste = new ListeScore(niveau);
+			ListeScore liste = new ListeScore(1);
 			//liste.genererListeAPartirDuFichier(1);
 			liste.genererListeAPartirDesFichier();
 			liste.afficherLesScores();
@@ -88,18 +86,6 @@ public class Game {
 	public static void creerSonProporeNiveau()
 		{
 			
-		}
-	public static Integer menuDesScores()
-		{
-			Integer niveau=0;
-			Scanner sc = new Scanner(System.in);
-			while (niveau<1 || niveau>10)
-				{
-					System.out.println("De quel niveau souhaitez vous voire les scores? (entre 1 et 10)");
-					
-					niveau = Integer.parseInt(sc.next());
-				}
-			return niveau;
 		}
 	
 }

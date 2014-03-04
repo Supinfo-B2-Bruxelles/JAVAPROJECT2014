@@ -6,7 +6,6 @@
 <fullyQualifiedTypeName name="java.lang.String"/>
 <fullyQualifiedTypeName name="java.awt.event.KeyEvent"/>
 <fullyQualifiedTypeName name="java.awt.event.KeyListener"/>
-<fullyQualifiedTypeName name="java.lang.Integer"/>
 <fullyQualifiedTypeName name="java.sql.Date"/>
 <fullyQualifiedTypeName name="Jeu.Plateau"/>
 <fullyQualifiedTypeName name="java.lang.Exception"/>
@@ -14,7 +13,9 @@
 <fullyQualifiedTypeName name="java.io.FileInputStream"/>
 <fullyQualifiedTypeName name="java.io.ObjectInputStream"/>
 <fullyQualifiedTypeName name="Personage.Personage"/>
+<fullyQualifiedTypeName name="java.io.File"/>
 <fullyQualifiedTypeName name="Jeu.Score"/>
 <fullyQualifiedTypeName name="Jeu.ListeScore"/>
+<fullyQualifiedTypeName name="java.lang.Integer"/>
 <fullyQualifiedTypeName name="java.lang.System"/>
 </qualifiedTypeNameHistroy>
