@@ -1,6 +1,5 @@
 package Main;
 
-import java.io.File;
 import java.util.Scanner;
 
 import Jeu.ListeScore;
@@ -18,13 +17,12 @@ public class Game {
 			Scanner sc = new Scanner(System.in);
 			Integer retour=0;
 			
-			while (retour<1 || retour>4)
+			while (retour<1 || retour>3)
 				{
 					System.out.println("Que voulez vous faire?");
 					System.out.println("1) Jouer");
 					System.out.println("2) Voire les scores");
 					System.out.println("3) Créer votre propre carte");
-					System.out.println("4) Lancer le jeu sur une de vos propres cartes");
 					retour = Integer.parseInt(sc.next());
 				}
 			
@@ -45,9 +43,6 @@ public class Game {
 
 			case 3:
 				creerSonProporeNiveau();
-				break;
-			case 4:
-				sokobanCustom(joueur);
 				break;
 
 
@@ -76,60 +71,15 @@ public class Game {
 			while(joueur.getLevel()<11 && resteDansJeu)
 				{
 					Plateau plat = new Plateau();
-					plat.chargerPlateauDepuisFichier("lv"+(joueur.getLevel()).toString()+".sok");
+					plat.chargerPlateauDepuisFichier("lv"+(joueur.getLevel()).toString()+".txt");
 					resteDansJeu=plat.jeu(joueur);
 					
 					
 				}
-			if (joueur.getLevel().equals(11))
+			if (joueur.getLevel().equals(10))
 				{
 					System.out.println("Bravo, vous avez retrouvé l'arche qui n'est plus perdu.");
-					joueur.setLevel(1);
 				}
-		}
-	public static void sokobanCustom(Personage joueur)
-		{
-			String[] listePlateauCustom;
-			//this.setTailleDuTableauPlateauCustom();
-			System.out.println("Quel niveau souhaitez vous lancer.");
-			Scanner sc = new Scanner(System.in);
-			Integer choix;
-			boolean resteDansJeu= true;
-			
-			try
-				{      
-		         
-					File dossier = new File("custom//");
-			         
-			         
-					listePlateauCustom = dossier.list();
-			         
-			         Integer i=0;
-			         Integer n;
-			         
-			         
-			         for (String fichier : listePlateauCustom)
-			         	{
-			        	 	n=i+1;
-			        	 	System.out.println(n+". "+fichier);
-			         	}
-			         choix = Integer.parseInt(sc.next());
-			         String niveauChoisi=listePlateauCustom[choix-1];
-			         
-			         Plateau plat = new Plateau();
-			         plat.chargerPlateauDepuisFichier("custom//"+niveauChoisi);
-			         resteDansJeu=plat.jeu(joueur);
-			         
-			         
-				}
-			catch (Exception e)
-			{
-				System.out.println(e.toString());
-			}
-			
-			
-			
-			
 		}
 	public static void score()
 		{

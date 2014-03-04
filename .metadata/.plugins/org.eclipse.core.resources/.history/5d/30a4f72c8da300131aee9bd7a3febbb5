@@ -2,7 +2,7 @@ package Main;
 
 /*
  *development team:
- *	Salim-Réda Said
+ *	Salim Réda-Said
  *	Sébastien Boulanger 
  *	Simon Hoggart
  *	Sébastien de Beauffort
@@ -48,9 +48,9 @@ public class Main {
 							}
 					}
 				else
-					{
-						choixMenu= Game.menuPrincipale();
-					}
+				{
+					choixMenu= Game.menuPrincipale();
+				}
 				
 				
 				quitter=Game.lancementApplication (choixMenu, joueur); //cette ligne lance l'application choisie et retourne le choix de l'utilisateur si il a décidé de quitter l'application à la fin
