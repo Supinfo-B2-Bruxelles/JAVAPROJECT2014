@@ -64,22 +64,14 @@ public class Game {
 		{
 			
 			boolean resteDansJeu= true;
-			System.out.println("Les services de Sa Majesté la reine ont perdu dans leur entrepot l'arche bien nomé.");
-			System.out.println("Les responsables ont appelé Indiana Jones à la rescousse, se disant que si il l'avait déja retrouvée une fois, il pourait bien la retrouver une seconde fois");
-			System.out.println("Ce pendant, ce dernier est un peut trop occupé en ce moment avec les extra-terrestre (ou sa blonde). Il vous a donc mandaté pour le remplacer.");
-			System.out.println("Vous montrerez vous à la hauteur d'un héros tels que lui?");
 			while(joueur.getLevel()<11 && resteDansJeu)
-				{
-					Plateau plat = new Plateau();
-					plat.chargerPlateauDepuisFichier("lv"+(joueur.getLevel()).toString()+".txt");
-					resteDansJeu=plat.jeu(joueur);
-					
-					
-				}
-			if (joueur.getLevel().equals(10))
-				{
-					System.out.println("Bravo, vous avez retrouvé l'arche qui n'est plus perdu.");
-				}
+			{
+				Plateau plat = new Plateau();
+				plat.chargerPlateauDepuisFichier("lv"+(joueur.getLevel()).toString()+".txt");
+				resteDansJeu=plat.jeu(joueur);
+				
+				
+			}
 		}
 	public static void score()
 		{
