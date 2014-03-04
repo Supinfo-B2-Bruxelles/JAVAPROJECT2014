@@ -1,18 +1,5 @@
 package Main;
 
-/*
- *development team:
- *	Salim Réda-Said
- *	Sébastien Boulanger 
- *	Simon Hoggart
- *	Sébastien de Beauffort
- *
- *Dans le cadre du projet Java de 2em bac de Supinfo
- * 
- * 
- *
- */
-
 import Personage.Personage;
 //à faire: main(--level, --score, --create), loader fichier (classe table), 
 public class Main {
