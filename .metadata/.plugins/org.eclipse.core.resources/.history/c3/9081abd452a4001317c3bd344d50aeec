@@ -178,7 +178,7 @@ public class Game {
 		boolean enreg=true;
 		boolean terminator = false; //Permet de savoir si l'utilisateur fini ou pas de créer la map
 		System.out.println("Bienvenue sur le map creator !\n");
-		System.out.println("Convention de Nommage :\n = -> mur\n X -> joueur\n B -> boite\nO -> emplacement\n. -> espace vide");
+		System.out.println("Convention de Nommage :\n = -> mur\n X -> joueur\n B -> boite\nO -> emplacement");
 		System.out.println("Si vous voulez retourner à la ligne, pressez Enter.\nPour arreter la saisie du niveau, appuyez sur P sur une ligne unique.\n");
 		System.out.println("Veuillez donner un nom a votre niveau : ");
 		niveau = "custom//"+sc.nextLine()+".sok";
@@ -208,25 +208,6 @@ public class Game {
 				String separator = System.getProperty("line.separator");
 			
 				for(int i =0; i<line.length; i++){
-					//prise en charge des minuscules
-					switch (line[i]) 
-		    		{
-		    			case 'p':
-		    				line[i]='P';
-		    				break;
-						case 'o':
-							line[i]='O';
-							break;
-						case 'b':
-							line[i]='B';
-							break;
-						case 'x':
-							line[i]='X';
-							break;
-						default:
-							break;
-					}
-					//
 					ligne = ligne + Character.toString(line[i]);
 				}							
 				ligne= ligne+separator;
@@ -254,8 +235,7 @@ public class Game {
 			    	{
 			    		lgmax=i;
 			    	}
-			    	
-			    	if(line[i]!='X'&&line[i]!='B'&&line[i]!='.'&&line[i]!= '='&&line[i]!='O'){
+			    	if(line[i]!='X'&&line[i]!='B'&&line[i]!='.'&&line[i]!= '='){
 			    		System.out.println("Vous avez une erreur. "+line[i]+" n'est pas un caractere correct.\nRecommencez la ligne.\n");
 			    		marqueur = false;
 			    		break;
@@ -284,7 +264,7 @@ public class Game {
 			e.printStackTrace();
 		} 
 		finally{
-			if (writer != null){writer.close();}
+			//if (writer != null){writer.close();}
 			//sc.close();
 		}
 		

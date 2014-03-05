@@ -208,25 +208,6 @@ public class Game {
 				String separator = System.getProperty("line.separator");
 			
 				for(int i =0; i<line.length; i++){
-					//prise en charge des minuscules
-					switch (line[i]) 
-		    		{
-		    			case 'p':
-		    				line[i]='P';
-		    				break;
-						case 'o':
-							line[i]='O';
-							break;
-						case 'b':
-							line[i]='B';
-							break;
-						case 'x':
-							line[i]='X';
-							break;
-						default:
-							break;
-					}
-					//
 					ligne = ligne + Character.toString(line[i]);
 				}							
 				ligne= ligne+separator;
@@ -254,7 +235,21 @@ public class Game {
 			    	{
 			    		lgmax=i;
 			    	}
-			    	
+			    	switch (line[i]) 
+		    		{
+						
+						case 'o':
+							line[i]='O';
+							break;
+						case 'b':
+							line[i]='B';
+							break;
+						case 'x':
+							line[i]='X';
+							break;
+						default:
+							break;
+					}
 			    	if(line[i]!='X'&&line[i]!='B'&&line[i]!='.'&&line[i]!= '='&&line[i]!='O'){
 			    		System.out.println("Vous avez une erreur. "+line[i]+" n'est pas un caractere correct.\nRecommencez la ligne.\n");
 			    		marqueur = false;
