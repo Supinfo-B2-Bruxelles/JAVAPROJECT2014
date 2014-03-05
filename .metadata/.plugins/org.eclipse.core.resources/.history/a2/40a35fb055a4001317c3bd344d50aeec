@@ -63,7 +63,7 @@ public class Score implements java.io.Serializable{
 			this.setTimeStampDebut(plat.getTimeStampDebut());
 			this.setTimeStampFin(plat.getTimeStampFin());
 		}
-	public void setScoreAPartirDuFichier () 
+	public void setScoreAPartirDuFichier () //à faire et modifer
 		{
 		FileInputStream fis = null;
 		ObjectInputStream ois = null;

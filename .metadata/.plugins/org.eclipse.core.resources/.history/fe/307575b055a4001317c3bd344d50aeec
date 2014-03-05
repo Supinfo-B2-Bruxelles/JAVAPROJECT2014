@@ -44,7 +44,7 @@ public class ListeScore implements java.io.Serializable {
 			Score liste[]= new Score [0];
 			this.setListeDesScores(liste);
 		}
-	public void genererListeAPartirDuFichier(Integer level) //non utilisé
+	public void genererListeAPartirDuFichier(Integer level)
 		{
 			this.setLevel(level);
 			FileInputStream fis = null;
@@ -91,7 +91,7 @@ public class ListeScore implements java.io.Serializable {
 			
 
 		}
-	public void miseAJourDesScores(Personage joueur, Plateau plat) //non utilisé
+	public void miseAJourDesScores(Personage joueur, Plateau plat)
 		{
 			//préparation de l'objet liste
 			this.genererListeAPartirDuFichier(joueur.getLevel());

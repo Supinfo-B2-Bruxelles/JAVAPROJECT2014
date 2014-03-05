@@ -226,13 +226,12 @@ public class Game {
 						default:
 							break;
 					}
-					//pour préparer la mise dans le fichier
+					//
 					ligne = ligne + Character.toString(line[i]);
 				}							
 				ligne= ligne+separator;
-				//System.out.println("String "+ligne);
+				System.out.println("String "+ligne);
 				
-				//verifiction que la premiere ligne contiens que des égales
 				if(cpt.equals(0)){
 					cpt++;
 					for(int i=0;i<line.length-1;i++){
@@ -242,7 +241,7 @@ public class Game {
 						}
 					}
 				}
-				//verification qu'il y a bien un égale au debut et à la fin de la ligne
+				
 				else if((line[0]!='=' || line[line.length-1]!='=')&&line[0]!='P'){
 					System.out.println("Vous avez fait une erreur aux extremites du tableau.\nRecommencez la ligne.\n");
 					enreg=false;
@@ -250,12 +249,12 @@ public class Game {
 				
 			    
 			    for(int i=0; i<line.length-1; i++){
-			    	//l'on stoque dans lgmax la longeur de la plus grande ligne (pour pouvoire fabriquer la derniere ligne
+			    	
 			    	if (i>lgmax)
 			    	{
 			    		lgmax=i;
 			    	}
-			    	//verification que la ligne ne contiens que des caracteres valides
+			    	
 			    	if(line[i]!='X'&&line[i]!='B'&&line[i]!='.'&&line[i]!= '='&&line[i]!='O'){
 			    		System.out.println("Vous avez une erreur. "+line[i]+" n'est pas un caractere correct.\nRecommencez la ligne.\n");
 			    		marqueur = false;
@@ -267,10 +266,8 @@ public class Game {
 			    
 			    }	
 			    if(line[0]=='P'){
-			    	//sortie de boucle
 		    		terminator= true;
 		    		ligne="";
-		    		//mise en place de la derniere ligne avec que des =
 		    		for (int j=0; j<=lgmax;j++)
 		    		{
 		    			ligne=ligne+"=";
