@@ -187,7 +187,7 @@ public class Game {
 		File fichier =new File(niveau);
 		
 		System.out.println("Vous pouvez maintenant editer votre map.\n");
-		
+		sc.close();
 		
 		try{
 			
@@ -198,9 +198,9 @@ public class Game {
 				
 			while(terminator == false){
 				
-				
+				sc = new Scanner(System.in); //Scanner les touches entrées
 				char[] line = sc.next().toCharArray();
-				
+				sc.close();
 				boolean marqueur = true;
 				System.out.println("Ligne inscrite");//ok
 				System.out.println(line);//ok
@@ -258,14 +258,14 @@ public class Game {
 			    writer.append(ligne);
 				}
 			}
-			
+			sc.close();
 			
 		}catch (IOException e){
 			e.printStackTrace();
 		} 
 		finally{
-			//if (writer != null){writer.close();}
-			//sc.close();
+			if (writer != null){writer.close();}
+			sc.close();
 		}
 		
 	}

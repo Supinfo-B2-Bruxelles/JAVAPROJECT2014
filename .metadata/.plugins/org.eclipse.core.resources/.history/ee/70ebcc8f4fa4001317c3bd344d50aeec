@@ -187,12 +187,12 @@ public class Game {
 		File fichier =new File(niveau);
 		
 		System.out.println("Vous pouvez maintenant editer votre map.\n");
-		
+		sc.close();
 		
 		try{
 			
 				writer = new PrintWriter(niveau);
-				
+				sc = new Scanner(System.in); //Scanner les touches entrées
 				
 				
 				
@@ -258,14 +258,14 @@ public class Game {
 			    writer.append(ligne);
 				}
 			}
-			
+			sc.close();
 			
 		}catch (IOException e){
 			e.printStackTrace();
 		} 
 		finally{
-			//if (writer != null){writer.close();}
-			//sc.close();
+			if (writer != null){writer.close();}
+			sc.close();
 		}
 		
 	}
